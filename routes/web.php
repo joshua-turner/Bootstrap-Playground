@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('jquery-drag', function () {
+    return view('jquery-drag');
+});
+
+Route::get('vue-drag', function () {
+    return view('vue-drag');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
