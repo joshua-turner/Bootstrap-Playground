@@ -16,11 +16,15 @@ Route::get('/', function () {
 });
 
 Route::get('jquery-drag', function () {
-    return view('jquery-drag');
+    return view('drag-drop/jquery');
 });
 
 Route::get('vue-drag', function () {
-    return view('vue-drag');
+    return view('drag-drop/vue');
+});
+
+Route::get('general-form', function () {
+    return view('general-form/index');
 });
 
 Auth::routes();
