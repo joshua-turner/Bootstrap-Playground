@@ -1,3 +1,47 @@
+<style type="text/css">
+  .box{
+  border-radius: 5px;
+  border:grey 1px solid;
+  background:#6A6A6A;
+  height:500px;
+  width:200px;
+  margin:10px;
+}
+
+.box-header{
+  text-align:center;
+  font-weight:bold;
+}
+
+.box .drag-content{
+  border-radius: 5px;
+  width:95%;
+  height:50px;
+  padding:20px;
+  margin:5px;
+  background:white;
+}
+
+
+.drag-content:hover{
+  cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.ghost {
+  border:transparent !important;
+    background: #D6D2D2 !important;
+    color:transparent !important;
+}
+
+.onDrag{
+  background:white !important;
+}
+
+</style>
+
+
 <template>
 	
 	<div align="center">
@@ -17,6 +61,7 @@
    				<div class="box-header"><p>Group Four</p></div>
    			</th>
 
+
 	 	<tr>
 	   		<!-- group 1 -->
    			<td>
@@ -32,7 +77,6 @@
 			</td>
 
 
-
 			<!-- group 2 -->
 			<td>
 				<draggable class="box box2" v-model="group2" 
@@ -45,8 +89,6 @@
 			</td>
 
 
-
-
 			<!-- group 3 -->
 			<td>
 				<draggable class="box box3" v-model="group3" 
@@ -57,7 +99,6 @@
 				   	</div>
 				</draggable>
 			</td>
-
 
 
 			<!-- group 4 -->
