@@ -43,46 +43,67 @@
 	.general__primary-btn{
 		background: #0D5496 !important;
     	border-color: #0D5496 !important;
+        width: 100px;
+    	float: right;
 	}
 	.general__primary-btn:hover{
 		background: rgba(13, 84, 150, 0.78) !important;
+	}
+
+	.margin-right-5{
+		margin-right: 5%;
+	}
+
+
+	/**/
+	/*		list style                */
+	/**/
+	ul li{
+		list-style-type: none !important;
+	}
+	ul.tabs-component-tabs{
+		float: left;
+		position: fixed;
+		padding-left: 0;
+		padding-bottom: 30px;
+		font-weight: bold;
+	}
+
+	ul.tabs-component-tabs a{
+		color:grey !important;
+		text-decoration: none;
+	}
+	ul.tabs-component-tabs a:hover{
+		color:black !important;
 	}
 
 </style>
 <template>
 	<div class="row">
 
-		<div class="col-md-8 col-md-offset-2 padd-0">
-			<h3>General Form</h3>
-		</div>
+		 <Tabs>
+		    <Tab name="Template 1">
+		    	<temp-one-form></temp-one-form>
+		    </Tab>
 
-		<div class="col-md-8 col-md-offset-2 padd-0">
-		<div class="center-all-content">
-		<div class="general__profile-box">
-			<div class="general__profile-box-content">
-				<h4>Sub Header 1</h4>
-				
-					<div v-for="i in (0,10)" class="form-group">
-						<label class="black-text">Field {{i}}</label>
-		                <input type="text" class="form-control" value="" required autofocus>
-					</div>
-			</div>
-			<div class="general__profile-box-content">
-				<h4>Sub Header 2</h4>
-
-					<div v-for="i in (0,5)" class="form-group">
-						<label class="black-text">Field {{i}}</label>
-		                <input type="text" class="form-control" value="" required autofocus>
-					</div>
-			</div>
-
-			<div class="form-group">
-				<button class="btn btn-success btn-sm btn-flat general__primary-btn form-control">Submit</button>
-			</div>
-		</div>
-		</div>
-		</div>
+		    <Tab name="Template 2">
+		    	<temp-two-form></temp-two-form>
+		    </Tab>
+		</Tabs>
 
 	</div>
 
 </template>
+
+<script>
+
+	import {Tabs, Tab} from 'vue-tabs-component';
+
+	export default {
+        components:{
+            Tabs,
+            Tab,
+        },
+
+    }
+</script>

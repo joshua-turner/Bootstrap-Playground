@@ -19,6 +19,9 @@
         "vue": "^2.1.10"
     },
     "dependencies": {
+        "vue-elucidate": "^0.12.0",
+        "vue-nav-tabs": "^0.5.4",
+        "vue-tabs-component": "^1.3.0",
         "vuedraggable": "^2.14.1"
     }
 }

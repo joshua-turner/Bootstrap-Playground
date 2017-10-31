@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    <general-form></general-form>
+    <form-index></form-index>
 </div>
 @endsection
