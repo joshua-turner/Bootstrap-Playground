@@ -16,8 +16,12 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('vue-drag', require('./components/VueDrag.vue'));
-Vue.component('general-form', require('./components/GeneralForm.vue'));
+Vue.component('vue-drag', require('./components/DragDrop/index.vue'));
+Vue.component('temp-one-drag', require('./components/DragDrop/TempOne.vue'));
+Vue.component('temp-two-drag', require('./components/DragDrop/TempTwo.vue'));
+Vue.component('form-index', require('./components/Form/index.vue'));
+Vue.component('temp-one-form', require('./components/Form/TempOne.vue'));
+Vue.component('temp-two-form', require('./components/Form/TempTwo.vue'));
 
 const app = new Vue({
     el: '#app'
