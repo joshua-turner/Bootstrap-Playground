@@ -79,10 +79,13 @@
 <script>
 
 import draggable from 'vuedraggable'
+import {Tabs, Tab} from 'vue-tabs-component';
 
 export default {
   components: {
     draggable,
+    Tabs,
+    Tab,
   },
 
   data() {

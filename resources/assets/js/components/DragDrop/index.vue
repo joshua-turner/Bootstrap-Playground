@@ -41,17 +41,23 @@
 
 
   /**/
-  /*    list style                */
+  /*        tab list style          */
   /**/
   ul li{
     list-style-type: none !important;
   }
   ul.tabs-component-tabs{
-    float: left;
     position: fixed;
-    padding-left: 0;
     padding-bottom: 30px;
     font-weight: bold;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: white;
+  }
+
+  ul.tabs-component-tabs .is-active a{
+    color:black !important;
   }
 
   ul.tabs-component-tabs a{
@@ -60,6 +66,11 @@
   }
   ul.tabs-component-tabs a:hover{
     color:black !important;
+  }
+
+  pre{
+    position: fixed;
+    right:50px;
   }
 
 </style>
