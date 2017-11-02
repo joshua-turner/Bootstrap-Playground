@@ -30,14 +30,42 @@ class User extends Authenticatable
 
 
 
-    public static function records()
+    public static function records($request = null)
     {
+        $request = $request ?: request(); 
+
         $instance = new static; 
 
-        // add any filters 
 
-        return $instance->with('profile')
-        ->orderBy('first_name', 'asc'); 
+        if(!is_null($request->q)) 
+        {
+            $searchTerm = $request->q; 
+            $instance = $instance->where("email",'like',"%$searchTerm%")
+            ->orWhere('first_name','like',"%$searchTerm%")
+            ->orWhere('last_name','like',"%$searchTerm%"); 
+        }
+
+
+        // add any filters 
+        if($request->orderFrom == "users") 
+        {
+           $instance = $instance->orderBy($request->orderBy, $request->orderType); 
+        }
+
+        $instance =  $instance->with(['profile' => function($query) use ($request){
+
+            if($request->orderFrom == "profile") 
+            {
+                // dd("here"); 
+                $query->orderBy($request->orderBy, $request->orderType); 
+            }
+
+        }]); 
+
+        if(!$request->orderFrom) 
+            $instance = $instance->orderBy('first_name','asc'); 
+
+        return $instance; 
 
     }
 

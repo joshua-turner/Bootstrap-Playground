@@ -49,7 +49,7 @@ class ProfileController extends Controller
 
 	public function getUsers()
 	{
-		return User::records()->paginate(25); 
+		return User::records()->paginate(10); 
 	}
 
 

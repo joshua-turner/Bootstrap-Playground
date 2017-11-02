@@ -1,78 +1,154 @@
 <template>
     <div>
 
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <th>First</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone #</th>
-                    <th>Address</th>
-                    <th>Country</th>
-                    <th>Last Updated At</th>
-                    <th></th>
-                </thead>
-                <tbody>
-                    <tr v-for="user in records">
-                        <td>
-                            <p>
-                                {{ user.first_name }}
-                            </p>
-                        </td>
-
-                        <td>
-                            <p>
-                                {{ user.last_name }}
-                            </p>
-                        </td>
-
-                        <td>
-                            <p>
-                                {{ user.email }}
-                            </p>
-                        </td>
-
-                        <td>
-                            <p>
-                                {{ user.profile.phone_number }}
-                            </p>
-                        </td>
-
-                        <td>
-                            <p>
-                                {{ user.profile.address_line_1 }}
-                                <br>
-                                {{ user.profile.address_line_2 }}
-                                <br>
-                                {{ user.profile.city }}, {{ user.profile.state }}
-                                <br>
-                                {{ user.profile.postal_code }}
-                            </p>
-
-                            
-
-                        </td>
-
-                        <td>
-                            <p>
-                                {{ user.profile.country }}
-                            </p>
-                        </td>
-
-                        <td>
-                            <p>
-                                {{ user.updated_at | fulldate }}
-                            </p>
-                        </td>
-
-                        <td>
-                            More
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-md-5">
+                <input type="text" placeholder="Search" class="form-control">
+            </div>
         </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <th>
+                                First
+                
+                                <span @click="filterRecordsByKey('first_name','users')">
+                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </span>
+                
+                            </th>
+                
+                            <th>
+                                Last Name
+                
+                                <span @click="filterRecordsByKey('last_name','users')">
+                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </span>
+                                
+                            </th>
+                
+                            <th>
+                                Email
+                
+                                <span @click="filterRecordsByKey('email','users')">
+                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </span>
+                            </th>
+                
+                            <th>
+                                Phone #
+                                <span @click="filterRecordsByKey('phone_number','profile')">
+                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </span>
+                
+                            </th>
+                
+                            <th>
+                                Address
+                                <span @click="filterRecordsByKey('address_line_1','profile')">
+                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </span>
+                
+                                
+                            </th>
+                
+                            <th>
+                                Country
+                                <span @click="filterRecordsByKey('country','profile')">
+                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </span>
+                
+                                
+                            </th>
+                
+                            <th>
+                                Last Updated At
+                
+                                <span @click="filterRecordsByKey('updated_at','users')">
+                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </span>
+                
+                                
+                            </th>
+                
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="user in records">
+                                <td>
+                                    <p>
+                                        {{ user.first_name }}
+                                    </p>
+                                </td>
+                
+                                <td>
+                                    <p>
+                                        {{ user.last_name }}
+                                    </p>
+                                </td>
+                
+                                <td>
+                                    <p>
+                                        {{ user.email }}
+                                    </p>
+                                </td>
+                
+                                <td>
+                                    <p>
+                                        {{ user.profile.phone_number }}
+                                    </p>
+                                </td>
+                
+                                <td>
+                                    <p>
+                                        {{ user.profile.address_line_1 }}
+                                        <br>
+                                        {{ user.profile.address_line_2 }}
+                                        <br>
+                                        {{ user.profile.city }}, {{ user.profile.state }}
+                                        <br>
+                                        {{ user.profile.postal_code }}
+                                    </p>
+                
+                                    
+                
+                                </td>
+                
+                                <td>
+                                    <p>
+                                        {{ user.profile.country }}
+                                    </p>
+                                </td>
+                
+                                <td>
+                                    <p>
+                                        {{ user.updated_at | fulldate }}
+                                    </p>
+                                </td>
+                
+                                <td>
+                                    More
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
 
         <ul class="pagination right-align" id="paginationLog">
             <li v-if="logPagination.current_page > 1">
@@ -91,7 +167,7 @@
                 </a>
             </li>
         </ul>
-        
+
     </div>
 </template>
 
@@ -119,6 +195,8 @@ export default {
 
             offset: 1,
 
+            // page:1, 
+
             records:[], 
 
             recordsEndpoint:"/user/records/all", 
@@ -126,6 +204,14 @@ export default {
             fetchingRecords:false, 
 
             statusItems:[],
+
+
+            orderRecords:{
+                column:'first_name', 
+                orderType:'asc',
+                table:'users',  
+            }, 
+
         }; 
     },  
 
@@ -210,47 +296,78 @@ export default {
 
                 this.records = []; 
 
-                this.fetchRecords(this.recordsEndpoint + "?page=" + page + "&q=" + this.q + "&status=" + this.statusFilter + "&date=" + this.dateFilter); 
+                // this.fetchRecords(this.recordsEndpoint + "?page=" + page + "&q=" + this.q + "&status=" + this.statusFilter + "&date=" + this.dateFilter);
 
-                // axios.get(this.recordsEndpoint)
-                // .then(data => data.data.data)
-                // .then(data => {
-                //     console.log("received the user data"); 
-                //     console.log(data); 
-                //     this.records = data.data; 
-                // }); 
-}, 
+                this.fetchRecords(this.getRecordsEndpoint(page)); 
+
+            }, 
 
 
 
-fetchRecords(endPoint)
-{   
-    console.log("fetching the records..."); 
+            filterRecordsByKey(key, table)
+            {
 
-    this.fetchingRecords = true; 
+                this.orderRecords.column = key; 
+                this.orderRecords.table = table; 
+                this.orderRecords.orderType = this.orderRecords.orderType == "asc" ? "desc" : "asc"; 
 
-    return axios.get(endPoint)
-    .then(data => data.data.data)
-    .then(data => {
-        console.log("received the data"); 
-        console.log(data); 
-        this.logPagination.total = data.total; 
-        this.logPagination.per_page = data.per_page; 
-        this.logPagination.from = data.from; 
-        this.logPagination.to = data.to; 
-        this.logPagination.current_page = data.current_page; 
-        this.logPagination.last_page = data.last_page; 
-        this.records = data.data; 
-        this.fetchingRecords = false; 
-    }); 
-},
 
-}, 
+                this.fetchRecords(this.getRecordsEndpoint());
 
-mounted() {
-    console.log('users list mounted.'); 
+            }, 
 
-    this.init(); 
-}
-}
-</script>
+
+
+            fetchRecords(endPoint)
+            {   
+                console.log("fetching the records..."); 
+
+                this.fetchingRecords = true; 
+
+                return axios.get(endPoint)
+                .then(data => data.data.data)
+                .then(data => {
+                    console.log("received the data"); 
+                    console.log(data); 
+                    this.logPagination.total = data.total; 
+                    this.logPagination.per_page = data.per_page; 
+                    this.logPagination.from = data.from; 
+                    this.logPagination.to = data.to; 
+                    this.logPagination.current_page = data.current_page; 
+                    this.logPagination.last_page = data.last_page; 
+                    this.records = data.data; 
+                    this.fetchingRecords = false; 
+                }); 
+            },
+
+
+            getRecordsEndpoint(page)
+            {
+
+                let baseEndpoint = this.recordsEndpoint + '?';
+
+                console.log("building the endpoint to get the records"); 
+                let args = [
+                    'page=' + (!page ? this.logPagination.current_page : page), 
+                    'q=' + this.q, 
+                    'status=' + this.statusFilter, 
+                    'date=' + this.dateFilter, 
+                    'orderBy=' + this.orderRecords.column, 
+                    'orderFrom=' + this.orderRecords.table, 
+                    'orderType=' + this.orderRecords.orderType, 
+                ];  
+
+                console.log(args.join('&')); 
+
+                return baseEndpoint + args.join('&'); 
+            }
+
+        }, 
+
+        mounted() {
+            console.log('users list mounted.'); 
+
+            this.init(); 
+        }
+    }
+    </script>
