@@ -36,7 +36,7 @@
 
 
 
-            <div class="col-md-9">
+            <div class="col-md-9 col-sm-8">
                 <keep-alive v-for="(tab, key) in tabs" v-if="tab.component" :key="key">
                     <component :is="tab.component" v-show="tab.isActive"></component>
                 </keep-alive> 

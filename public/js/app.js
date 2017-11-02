@@ -18257,7 +18257,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(134);
-module.exports = __webpack_require__(204);
+module.exports = __webpack_require__(207);
 
 
 /***/ }),
@@ -18274,6 +18274,8 @@ module.exports = __webpack_require__(204);
 __webpack_require__(135);
 
 window.Vue = __webpack_require__(159);
+
+window.moment = __webpack_require__(0);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -18293,6 +18295,7 @@ Vue.component('user-profile-tabs', __webpack_require__(192));
 Vue.component('user-profile-details', __webpack_require__(195));
 Vue.component('user-email-details', __webpack_require__(198));
 Vue.component('user-address-details', __webpack_require__(201));
+Vue.component('users-list', __webpack_require__(204));
 
 var app = new Vue({
   el: '#app'
@@ -64119,7 +64122,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-md-9" },
+        { staticClass: "col-md-9 col-sm-8" },
         _vm._l(_vm.tabs, function(tab, key) {
           return tab.component
             ? _c(
@@ -64340,25 +64343,6 @@ var staticRenderFns = [
         _c("input", {
           staticClass: "form-control",
           attrs: { type: "text", name: "phone_no", id: "mobile_no" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "font-10" }, [_vm._v("Country")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          { staticClass: "form-control", attrs: { id: "country" } },
-          [_c("option", [_vm._v("India")])]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { staticClass: "font-10" }, [_vm._v("ZipCode")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", name: "zipcode", id: "zipcode" }
         })
       ]),
       _vm._v(" "),
@@ -64784,6 +64768,798 @@ if (false) {
 
 /***/ }),
 /* 204 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(205)
+/* template */
+var __vue_template__ = __webpack_require__(206)
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/User/UsersList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-42ebdeb0", Component.options)
+  } else {
+    hotAPI.reload("data-v-42ebdeb0", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 205 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['userRecords'],
+
+    data: function data() {
+        return {
+            logArr: [],
+            q: '',
+            statusFilter: 'all',
+            dateFilter: '',
+            logPagination: {
+                total: 0,
+                per_page: 2,
+                from: 1,
+                to: 0,
+                current_page: 1,
+                last_page: ''
+            },
+
+            offset: 1,
+
+            // page:1, 
+
+            records: [],
+
+            recordsEndpoint: "/user/records/all",
+
+            fetchingRecords: false,
+
+            statusItems: [],
+
+            orderRecords: {
+                column: 'first_name',
+                orderType: 'asc',
+                table: 'users'
+            }
+
+        };
+    },
+
+
+    computed: {
+
+        isActived: function isActived() {
+            // return this.logPagination.current_page;
+        },
+
+        pagesNumber: function pagesNumber() {
+            if (!this.logPagination.to) {
+                return [];
+            }
+            var from = this.logPagination.current_page - this.offset;
+            if (from < 1) {
+                from = 1;
+            }
+            var to = this.logPagination.last_page;
+
+            var pagesArray = [];
+            while (from <= to) {
+                pagesArray.push(from);
+                from++;
+            }
+            return pagesArray;
+        }
+    },
+
+    watch: {
+        q: function q() {
+            console.log("watching the search query.");
+
+            // this.search(); 
+        },
+        isActived: function isActived() {
+            this.getRecords(this.isActived);
+        }
+    },
+
+    filters: {
+        fulldate: function fulldate(date) {
+            return !date ? "—" : moment(date).format("D MMM, YYYY HH:mm:ss");
+        },
+
+        removeEmpty: function removeEmpty(value) {
+            return !value ? "—" : value;
+        }
+    },
+
+    methods: {
+        init: function init() {
+            this.getRecords();
+        },
+        getRecords: function getRecords(pageNumber) {
+            var page = !pageNumber ? this.logPagination.current_page : pageNumber;
+
+            if (this.fetchingRecords) return;
+
+            this.logPagination.current_page = page;
+
+            this.records = [];
+
+            // this.fetchRecords(this.recordsEndpoint + "?page=" + page + "&q=" + this.q + "&status=" + this.statusFilter + "&date=" + this.dateFilter);
+
+            this.fetchRecords(this.getRecordsEndpoint(page));
+        },
+        filterRecordsByKey: function filterRecordsByKey(key, table) {
+
+            this.orderRecords.column = key;
+            this.orderRecords.table = table;
+            this.orderRecords.orderType = this.orderRecords.orderType == "asc" ? "desc" : "asc";
+
+            this.fetchRecords(this.getRecordsEndpoint());
+        },
+        fetchRecords: function fetchRecords(endPoint) {
+            var _this = this;
+
+            console.log("fetching the records...");
+
+            this.fetchingRecords = true;
+
+            return axios.get(endPoint).then(function (data) {
+                return data.data.data;
+            }).then(function (data) {
+                console.log("received the data");
+                console.log(data);
+                _this.logPagination.total = data.total;
+                _this.logPagination.per_page = data.per_page;
+                _this.logPagination.from = data.from;
+                _this.logPagination.to = data.to;
+                _this.logPagination.current_page = data.current_page;
+                _this.logPagination.last_page = data.last_page;
+                _this.records = data.data;
+                _this.fetchingRecords = false;
+            });
+        },
+        getRecordsEndpoint: function getRecordsEndpoint(page) {
+
+            var baseEndpoint = this.recordsEndpoint + '?';
+
+            console.log("building the endpoint to get the records");
+            var args = ['page=' + (!page ? this.logPagination.current_page : page), 'q=' + this.q, 'status=' + this.statusFilter, 'date=' + this.dateFilter, 'orderBy=' + this.orderRecords.column, 'orderFrom=' + this.orderRecords.table, 'orderType=' + this.orderRecords.orderType];
+
+            console.log(args.join('&'));
+
+            return baseEndpoint + args.join('&');
+        }
+    },
+
+    mounted: function mounted() {
+        console.log('users list mounted.');
+
+        this.init();
+    }
+});
+
+/***/ }),
+/* 206 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c("table", { staticClass: "table table-striped" }, [
+            _c("thead", [
+              _c("th", [
+                _vm._v(
+                  "\n                            First\n            \n                            "
+                ),
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.filterRecordsByKey("first_name", "users")
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-chevron-up",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fa fa-chevron-down",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                            Last Name\n            \n                            "
+                ),
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.filterRecordsByKey("last_name", "users")
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-chevron-up",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fa fa-chevron-down",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                            Email\n            \n                            "
+                ),
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.filterRecordsByKey("email", "users")
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-chevron-up",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fa fa-chevron-down",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                            Phone #\n                            "
+                ),
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.filterRecordsByKey("phone_number", "profile")
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-chevron-up",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fa fa-chevron-down",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                            Address\n                            "
+                ),
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.filterRecordsByKey("address_line_1", "profile")
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-chevron-up",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fa fa-chevron-down",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                            Country\n                            "
+                ),
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.filterRecordsByKey("country", "profile")
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-chevron-up",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fa fa-chevron-down",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                            Last Updated At\n            \n                            "
+                ),
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.filterRecordsByKey("updated_at", "users")
+                      }
+                    }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-chevron-up",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fa fa-chevron-down",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("th")
+            ]),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.records, function(user) {
+                return _c("tr", [
+                  _c("td", [
+                    _c("p", [
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(user.first_name) +
+                          "\n                                "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("p", [
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(user.last_name) +
+                          "\n                                "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("p", [
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(user.email) +
+                          "\n                                "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("p", [
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(user.profile.phone_number) +
+                          "\n                                "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("p", [
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(user.profile.address_line_1) +
+                          "\n                                    "
+                      ),
+                      _c("br"),
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(user.profile.address_line_2) +
+                          "\n                                    "
+                      ),
+                      _c("br"),
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(user.profile.city) +
+                          ", " +
+                          _vm._s(user.profile.state) +
+                          "\n                                    "
+                      ),
+                      _c("br"),
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(user.profile.postal_code) +
+                          "\n                                "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("p", [
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(user.profile.country) +
+                          "\n                                "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("p", [
+                      _vm._v(
+                        "\n                                    " +
+                          _vm._s(_vm._f("fulldate")(user.updated_at)) +
+                          "\n                                "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                                More\n                            "
+                    )
+                  ])
+                ])
+              })
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "pagination right-align", attrs: { id: "paginationLog" } },
+      [
+        _vm.logPagination.current_page > 1
+          ? _c("li", [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#", "aria-label": "Previous" },
+                  on: {
+                    click: function($event) {
+                      _vm.getRecords(_vm.logPagination.current_page - 1)
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-chevron-left",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ]
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm._l(_vm.pagesNumber, function(page) {
+          return _c("li", { class: [page == _vm.isActived ? "active" : ""] }, [
+            _c(
+              "a",
+              {
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    _vm.getRecords(page)
+                  }
+                }
+              },
+              [_vm._v("\n                " + _vm._s(page) + "\n            ")]
+            )
+          ])
+        }),
+        _vm._v(" "),
+        _vm.logPagination.current_page < _vm.logPagination.last_page
+          ? _c("li", [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.getRecords(_vm.logPagination.current_page + 1)
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-chevron-right",
+                    attrs: { "aria-hidden": "true" }
+                  })
+                ]
+              )
+            ])
+          : _vm._e()
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-5" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Search" }
+        })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-42ebdeb0", module.exports)
+  }
+}
+
+/***/ }),
+/* 207 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
