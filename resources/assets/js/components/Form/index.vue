@@ -29,7 +29,7 @@
 	    justify-content: center;
 	}
 	.general__profile-box{
-		min-height: 500px;
+		/*min-height: 500px;*/
 	    width: 90%;
 	    background: #f0f1f3;
 	    margin-top: 20px;
@@ -56,17 +56,23 @@
 
 
 	/**/
-	/*		list style                */
+	/*        tab list style          */
 	/**/
 	ul li{
 		list-style-type: none !important;
 	}
 	ul.tabs-component-tabs{
-		float: left;
 		position: fixed;
-		padding-left: 0;
 		padding-bottom: 30px;
 		font-weight: bold;
+		border: 1px solid #E0E0E0;
+		border-radius: 5px;
+		padding: 10px;
+		background-color: white;
+	}
+
+	ul.tabs-component-tabs .is-active a{
+		color:black !important;
 	}
 
 	ul.tabs-component-tabs a{
@@ -77,16 +83,21 @@
 		color:black !important;
 	}
 
+  pre{
+  	position: fixed;
+  	right:50px;
+  }
+
 </style>
 <template>
 	<div class="row">
 
 		 <Tabs>
-		    <Tab name="Template 1">
+		    <Tab name="User Profile">
 		    	<temp-one-form></temp-one-form>
 		    </Tab>
 
-		    <Tab name="Template 2">
+		    <Tab name="Addable Field">
 		    	<temp-two-form></temp-two-form>
 		    </Tab>
 		</Tabs>
