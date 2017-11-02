@@ -12,21 +12,18 @@
           <th>
             <div class="box-header"><p>Group Three</p></div>
           </th>
-          <th>
-            <div class="box-header"><p>Group Four</p></div>
-          </th>
 
 
       <tr>
           <!-- group 1 -->
           <td>
-          <draggable class="box box1" v-model="group1" 
-                :options="optGroup1" 
-                @start="drag=true" @end="drag=false">
+          <draggable id="dragGroup1" :list="group1" class="box box1" v-model="group1" 
+                :options="groupOpt"
+               @add="onAdd">
             
-              <div v-for="g1 in group1" class="drag-content">
+              <div v-for="g1 in group1" class="drag-content" :key="g1">
 
-                <p class="group1Item">{{g1}}</p>
+                <p>{{g1}}</p>
               </div>
           </draggable>
         </td>
@@ -34,11 +31,12 @@
 
         <!-- group 2 -->
         <td>
-          <draggable class="box box2" v-model="group2" 
-                :options="optGroup2" 
-                @start="drag=true" @end="drag=false">
-              <div v-for="g2 in group2" class="drag-content">
-                <p class="group2Item">{{g2}}</p>
+          <draggable id="dragGroup2" :list="group2" class="box box2" v-model="group2" 
+                :options="groupOpt"
+               @add="onAdd">
+
+              <div v-for="g2 in group2" class="drag-content" :key="g2">
+                <p>{{g2}}</p>
               </div>
           </draggable>
         </td>
@@ -46,32 +44,24 @@
 
         <!-- group 3 -->
         <td>
-          <draggable class="box box3" v-model="group3" 
-              :options="optGroup3" 
-                @start="drag=true" @end="drag=false">
-              <div v-for="g3 in group3" class="drag-content">
-                <p class="group3Item">{{g3}}</p>
+          <draggable id="dragGroup3" :list="group3" class="box box3" v-model="group3" 
+                :options="groupOpt"
+               @add="onAdd">
+
+              <div v-for="g3 in group3" class="drag-content" :key="g3">
+                <p>{{g3}}</p>
               </div>
           </draggable>
         </td>
 
-
-        <!-- group 4 -->
-        <td>
-          <draggable class="box box4" v-model="group4" 
-              :options="group4Opt" 
-                @start="drag=true" @end="drag=false">
-              <div v-for="g4 in group4" class="drag-content">
-                <p class="group4Item">{{g4}}</p>
-              </div>
-          </draggable>
-        </td>
 
       </tr>
 
 
 
     </table>
+
+    
     </div>
 </template>
 
@@ -91,38 +81,105 @@ export default {
   data() {
     return {
 
-      group1: ['Munir','Chong','Samad','Gopal','Ling','Siva','Maniam','Ahmad'],
-      group2: ['Abu','Siti'],
-      group3:[],
-      group4:[],
+      group1: [],
+      group2: [],
+      group3: [],
 
-      optGroup1: {
+      groupOpt: {
               group:{name: 'general'},
               animation: 130,
               ghostClass:'ghost',
               dragClass:'onDrag',
-            },
-      optGroup2:{
-              group:{name: 'general'},
-              animation: 130,
-              ghostClass:'ghost',
-              dragClass:'onDrag',
-            },
-      optGroup3:{
-              group:{name: 'general'},
-              animation: 130,
-              ghostClass:'ghost',
-              dragClass:'onDrag',
-            },
-        group4Opt:{
-              group:{name: 'general'},
-              animation: 130,
-              ghostClass:'ghost',
-              dragClass:'onDrag',
+
             },
     }
 
   },
+
+  methods:{
+
+
+        onAdd(event){
+          console.log('Add');
+          console.log({
+                event: event,
+                item:event.item.textContent,
+                from_group: event.from.id,
+                index_from:event.oldIndex,
+                to_group: event.to.id,
+                index_to:event.newIndex,
+              });
+          // toastr["success"]('Its');
+        },
+
+
+        onSort(event){
+          console.log('Sort');
+          console.log({
+                event: event,
+                item:event.item.textContent,
+                from_group: event.from.id,
+                index_from:event.oldIndex,
+                to_group: event.to.id,
+                index_to:event.newIndex,
+
+              });
+        },
+
+        onMove (event,originalEvent) {
+          console.log('Move');
+          console.log({
+                event: event,
+                originalEvent: originalEvent,
+                content: event.draggedContext.element,
+                // from_group: event.from.id,
+                // to_group: event.to.id,
+                // type:event.to.type,
+                // index_from: event.oldIndex,
+                // index_to: event.newIndex,
+              });
+        },
+
+        onEnd(event){
+          console.log('End');
+          console.log({
+                event: event,
+                item:event.item.textContent,
+                from_group: event.from.id,
+                to_group: event.to.id,
+
+              });
+        },
+
+        onStart(event){
+          console.log('Start');
+          console.log({
+                  event:event,
+                  content: event.item.textContent,
+                  from_group: event.target.id,
+                  to_group: event.target.to,
+                  index_from: event.oldIndex,
+                  index_to: event.newIndex,
+                  });
+        },
+          
+
+      fetchData:function(){
+      var self = this;
+      console.log('Fetching data');
+      axios.get('/fetchDraggableData').then(function(response){
+        
+        self.group1  = response.data['group1'];
+        console.log('Data fetched');
+
+        });
+      
+      },
+        
+  },
+  mounted() {            
+      this.fetchData();
+    },
 
 }
   

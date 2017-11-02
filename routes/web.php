@@ -30,3 +30,5 @@ Route::get('general-form', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/fetchDraggableData', 'PlaygroundController@getDraggableData')->name('home');
