@@ -22,7 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('user/index/primary', 'ProfileController@primaryIndex'); 
 
-Route::get('user/index', 'ProfileController@index'); 
+Route::get('user/index/secondary', 'ProfileController@index'); 
 
 Route::get('user/profile/{profile?}','ProfileController@show'); 
