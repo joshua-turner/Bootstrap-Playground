@@ -27,20 +27,20 @@
 
 
         <!-- country -->
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label class="font-10">Country</label>
             <select class="form-control" id="country">
                 <option>India</option>
             </select>
-        </div>
+        </div> -->
 
 
 
         <!-- zipcode -->
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label class="font-10">ZipCode</label>
             <input type="text" name="zipcode" id="zipcode" class="form-control">
-        </div>
+        </div> -->
 
 
 

@@ -26,4 +26,29 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+
+    public static function records()
+    {
+        $instance = new static; 
+
+        // add any filters 
+
+        return $instance->with('profile')
+        ->orderBy('first_name', 'asc'); 
+
+    }
+
+
+
+
+
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class, 'user_id'); 
+    }
+
+
 }
