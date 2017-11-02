@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class PlaygroundController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     /**
@@ -26,4 +26,10 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function getDraggableData(){
+
+        $data['group1']=['Banana','Mangosteen','Durian','Dragon Fruit','Kiwi'];
+        
+        return $data;
+    }
 }
