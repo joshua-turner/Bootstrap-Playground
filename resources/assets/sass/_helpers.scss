@@ -1,0 +1,46 @@
+.center-all-content {
+	display:flex; 
+	align-items:center; 
+	justify-content:center;
+}
+
+
+.display--flex {
+	display:flex !important; 
+
+	@media screen and (max-width:990px) {
+		display:block !important; 
+	}
+}
+
+.display--flex-no-wrap {
+	display:flex !important;  
+}
+
+.flex-1 {
+	flex:1; 
+}
+
+.justify-content--center {
+	justify-content:center; 
+}
+
+
+.justify-content--space-between {
+	justify-content:space-between; 
+}
+
+
+.align-items--center {
+	align-items:center; 
+}
+
+
+.margin-top--10 {
+	margin-top:10px; 
+}
+
+
+.overflow__x--scrollable {
+	overflow-x:scroll; 
+}
