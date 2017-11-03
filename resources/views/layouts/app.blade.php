@@ -34,8 +34,17 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- Fonts -->
+  <link rel="stylesheet" href="/global/fonts/material-design/material-design.min.css">
+  <link rel="stylesheet" href="/global/fonts/brand-icons/brand-icons.min.css">
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+
     <link rel="stylesheet" href="/global/css/bootstrap-extend.min.css">
     <link rel="stylesheet" href="/assets/css/site.min.css">
+
+    @yield('after-styles')
+
+    <!-- <link rel="stylesheet" href="/assets/examples/css/dashboard/v1.css"> -->
 
 
 </head>
@@ -102,5 +111,9 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+    @yield('after-scripts')
+</script>
+
 </body>
 </html>

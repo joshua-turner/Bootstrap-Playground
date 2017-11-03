@@ -18301,6 +18301,8 @@ var app = new Vue({
   el: '#app'
 });
 
+window.PollingInstance = __webpack_require__(216);
+
 /***/ }),
 /* 135 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -65552,6 +65554,118 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */
+/***/ (function(module, exports) {
+
+module.exports = {
+
+	inactiveCount: 0,
+
+	keepPolling: true,
+
+	statKeys: {
+		user: '#userStats',
+		visits: '#visitsStats',
+		clicks: '#totalClicks',
+		items: '#itemsStats'
+	},
+
+	init: function init() {
+		var _this = this;
+
+		console.log("initializing the polling logic");
+
+		// this.listenForEcho(); 
+
+		this.handleInactiveCount();
+
+		this.addDocumentEventListeners();
+
+		this.getStatsElements();
+
+		this.getStatsData().then(function (_) {
+			return _this.keepPollingFromServer();
+		});
+	},
+	listenForEcho: function listenForEcho() {
+		console.log("listening for echo");
+		Echo.channel('user-notified').listen("NotifyUser", function (e) {
+			console.log("user notified");
+			console.log(e.notification);
+		});
+	},
+	addDocumentEventListeners: function addDocumentEventListeners() {
+		document.addEventListener("mousemove", this.initInactiveCount.bind(this));
+		document.addEventListener("keypress", this.initInactiveCount.bind(this));
+	},
+	handleInactiveCount: function handleInactiveCount() {
+		var _this2 = this;
+
+		setInterval(function (_) {
+			_this2.inactiveCount++;
+			console.log("inactive count");
+			console.log(_this2.inactiveCount);
+
+			if (_this2.inactiveCount > 3) _this2.keepPolling = false;
+		}, 6000);
+	},
+	initInactiveCount: function initInactiveCount() {
+		console.log("re init inactive count");
+		this.inactiveCount = 0;
+		this.keepPolling = true;
+	},
+	getStatsElements: function getStatsElements() {
+		console.log("getting the stats elements");
+
+		this.statKeys = _.mapValues(this.statKeys, function (selector, key) {
+			return document.querySelector(selector);
+		});
+
+		console.log(this.statKeys);
+	},
+	getStatsData: function getStatsData() {
+		var _this3 = this;
+
+		if (!this.keepPolling) return;
+
+		console.log("getting the stats data");
+
+		return axios.get('/dashboard/user/stats').then(function (data) {
+			return data.data.data;
+		}).then(function (stats) {
+			console.log("received the data");
+			console.log(stats);
+			console.log(_this3);
+
+			_.map(stats, function (value, key) {
+				console.log("looping through the keys");
+				console.log(value, key);
+				_this3.setStats(key, value);
+			});
+		});
+	},
+	setStats: function setStats(key, value) {
+		console.log(this.statKeys);
+		console.log(this.statKeys[key]);
+		if (!this.statKeys[key]) return;
+
+		this.statKeys[key].innerHTML = value;
+	},
+	keepPollingFromServer: function keepPollingFromServer() {
+		console.log("polling for the data");
+		setInterval(this.getStatsData.bind(this), 6000);
+	}
+};
 
 /***/ })
 /******/ ]);

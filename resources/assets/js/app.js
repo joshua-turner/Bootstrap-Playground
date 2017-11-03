@@ -38,3 +38,7 @@ Vue.component('users-list', require('./components/User/UsersList.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+
+
+window.PollingInstance = require('./elements/polling.js'); 

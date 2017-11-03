@@ -30,3 +30,9 @@ Route::get('user/index/primary', 'ProfileController@primaryIndex');
 Route::get('user/index/secondary', 'ProfileController@index'); 
 
 Route::get('user/profile/{profile?}','ProfileController@show'); 
+
+
+Route::get('dashboard', 'DashboardController@index');
+
+
+Route::get('dashboard/user/stats', 'DashboardController@stats');
