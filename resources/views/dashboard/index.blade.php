@@ -113,9 +113,9 @@
               <div class="card-block p-20 p-t-10">
                 <div class="clearfix">
                   <div class="grey-800 pull-xs-left p-y-10">
-                    <i class="icon md-view-list grey-600 font-size-24 vertical-align-bottom m-r-5"></i>                  Connected
+                    <i class="icon md-view-list grey-600 font-size-24 vertical-align-bottom m-r-5"></i>                  Connection Status
                   </div>
-                  <span id="connectivity" class="pull-xs-right grey-700 font-size-30">0</span>
+                  <span id="connectionStatus" class="pull-xs-right grey-700 font-size-30">Active</span>
                 </div>
               </div>
             </div>

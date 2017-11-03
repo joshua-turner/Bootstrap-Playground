@@ -6,6 +6,15 @@ module.exports = {
 	keepPolling:true, 
 
 
+	connectionStatus:'Active', 
+
+
+	pollTimer:6000, 
+
+
+	maxAttempts:3, 
+
+
 	statKeys:{
 		user:'#userStats', 
 		visits:'#visitsStats', 
@@ -19,15 +28,38 @@ module.exports = {
 		console.log("initializing the polling logic"); 
 
 		// this.listenForEcho(); 
-		
-		this.handleInactiveCount(); 
+			
+		this.getConfigOptions().then(_ => {
 
-		this.addDocumentEventListeners(); 
+			console.log("the config options are: "); 
+			console.log(this.pollTimer, this.maxAttempts); 
 
 
-		this.getStatsElements(); 
+			this.handleInactiveCount(); 
 
-		this.getStatsData().then(_ => this.keepPollingFromServer()); 
+			this.addDocumentEventListeners(); 
+
+
+			this.getStatsElements(); 
+
+			this.getStatsData().then(_ => this.keepPollingFromServer()); 
+		}); 
+
+	}, 
+
+
+
+	getConfigOptions()
+	{
+		console.log("get the config options"); 
+
+		return axios.get('/dashboard/polling/options')
+		.then(data => data.data.data)
+		.then(data => {
+			this.maxAttempts = data.max_attempts; 
+			this.pollTimer = data.poll_timer; 
+			return data; 
+		}); 
 	}, 
 
 
@@ -59,11 +91,15 @@ module.exports = {
 			console.log("inactive count"); 
 			console.log(this.inactiveCount); 
 
-			if(this.inactiveCount > 3)
+			if(this.inactiveCount > this.maxAttempts)
 				this.keepPolling = false; 
 
-		}, 6000); 
+
+			this.setConnectionStatusValue(); 
+
+		}, this.pollTimer); 
 	}, 
+
 
 
 	initInactiveCount()
@@ -126,7 +162,22 @@ module.exports = {
 	keepPollingFromServer()
 	{
 		console.log("polling for the data"); 
-		setInterval(this.getStatsData.bind(this), 6000); 
+		setInterval(this.getStatsData.bind(this), this.pollTimer); 
+	}, 
+
+
+
+	setConnectionStatusValue()
+	{
+		console.log("setting the connection value"); 
+
+
+		this.connectionStatus = this.keepPolling ? "Active" : "Inactive"; 
+
+		console.log(this.connectionStatus); 
+
+		document.querySelector('#connectionStatus').innerHTML = this.connectionStatus; 
+
 	}, 
 
 }

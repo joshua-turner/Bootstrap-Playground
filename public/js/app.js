@@ -65573,6 +65573,12 @@ module.exports = {
 
 	keepPolling: true,
 
+	connectionStatus: 'Active',
+
+	pollTimer: 6000,
+
+	maxAttempts: 3,
+
 	statKeys: {
 		user: '#userStats',
 		visits: '#visitsStats',
@@ -65587,14 +65593,33 @@ module.exports = {
 
 		// this.listenForEcho(); 
 
-		this.handleInactiveCount();
+		this.getConfigOptions().then(function (_) {
 
-		this.addDocumentEventListeners();
+			console.log("the config options are: ");
+			console.log(_this.pollTimer, _this.maxAttempts);
 
-		this.getStatsElements();
+			_this.handleInactiveCount();
 
-		this.getStatsData().then(function (_) {
-			return _this.keepPollingFromServer();
+			_this.addDocumentEventListeners();
+
+			_this.getStatsElements();
+
+			_this.getStatsData().then(function (_) {
+				return _this.keepPollingFromServer();
+			});
+		});
+	},
+	getConfigOptions: function getConfigOptions() {
+		var _this2 = this;
+
+		console.log("get the config options");
+
+		return axios.get('/dashboard/polling/options').then(function (data) {
+			return data.data.data;
+		}).then(function (data) {
+			_this2.maxAttempts = data.max_attempts;
+			_this2.pollTimer = data.poll_timer;
+			return data;
 		});
 	},
 	listenForEcho: function listenForEcho() {
@@ -65609,15 +65634,17 @@ module.exports = {
 		document.addEventListener("keypress", this.initInactiveCount.bind(this));
 	},
 	handleInactiveCount: function handleInactiveCount() {
-		var _this2 = this;
+		var _this3 = this;
 
 		setInterval(function (_) {
-			_this2.inactiveCount++;
+			_this3.inactiveCount++;
 			console.log("inactive count");
-			console.log(_this2.inactiveCount);
+			console.log(_this3.inactiveCount);
 
-			if (_this2.inactiveCount > 3) _this2.keepPolling = false;
-		}, 6000);
+			if (_this3.inactiveCount > _this3.maxAttempts) _this3.keepPolling = false;
+
+			_this3.setConnectionStatusValue();
+		}, this.pollTimer);
 	},
 	initInactiveCount: function initInactiveCount() {
 		console.log("re init inactive count");
@@ -65634,7 +65661,7 @@ module.exports = {
 		console.log(this.statKeys);
 	},
 	getStatsData: function getStatsData() {
-		var _this3 = this;
+		var _this4 = this;
 
 		if (!this.keepPolling) return;
 
@@ -65645,12 +65672,12 @@ module.exports = {
 		}).then(function (stats) {
 			console.log("received the data");
 			console.log(stats);
-			console.log(_this3);
+			console.log(_this4);
 
 			_.map(stats, function (value, key) {
 				console.log("looping through the keys");
 				console.log(value, key);
-				_this3.setStats(key, value);
+				_this4.setStats(key, value);
 			});
 		});
 	},
@@ -65663,7 +65690,16 @@ module.exports = {
 	},
 	keepPollingFromServer: function keepPollingFromServer() {
 		console.log("polling for the data");
-		setInterval(this.getStatsData.bind(this), 6000);
+		setInterval(this.getStatsData.bind(this), this.pollTimer);
+	},
+	setConnectionStatusValue: function setConnectionStatusValue() {
+		console.log("setting the connection value");
+
+		this.connectionStatus = this.keepPolling ? "Active" : "Inactive";
+
+		console.log(this.connectionStatus);
+
+		document.querySelector('#connectionStatus').innerHTML = this.connectionStatus;
 	}
 };
 

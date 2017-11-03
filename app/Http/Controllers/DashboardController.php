@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DashboardValues; 
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,7 +12,6 @@ class DashboardController extends Controller
 
 	public function index()
     {
-    	// dd("here"); 
     	return view('dashboard.index'); 
     }
 
@@ -21,14 +21,36 @@ class DashboardController extends Controller
 
     public function stats()
     {
+    	$values = DashboardValues::find(
+    		rand(1, DashboardValues::count())
+    	); 
+
+    	// dd($values); 
+
     	return response()->json([
     		"data" => [
-    			'user' => rand(600, 90000), 
-    			'visits' => rand(600, 90000), 
-    			'clicks' => rand(600, 90000), 
-    			'items' => rand(600, 90000)
+    			'user' => $values->user_count, 
+    			'visits' => $values->visits_count, 
+    			'clicks' => $values->clicks_count, 
+    			'items' => $values->items_count
     		], 
     	], 200); 
     }
+
+
+
+
+
+    public function getPollingOptions()
+    {
+    	return response()->json([
+    		"data" => [
+    			'max_attempts' => env('POLLING_MAX_ATTEMPTS', 4), 
+	    		'poll_timer' => env('POLLING_TIMER', 6500),  
+    		]
+    	], 200); 
+    }
+
+
 
 }

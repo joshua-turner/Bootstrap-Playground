@@ -36,3 +36,5 @@ Route::get('dashboard', 'DashboardController@index');
 
 
 Route::get('dashboard/user/stats', 'DashboardController@stats');
+
+Route::get('/dashboard/polling/options', 'DashboardController@getPollingOptions');
