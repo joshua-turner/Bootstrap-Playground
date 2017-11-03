@@ -7,3 +7,25 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+@import "variables"; 
+@import "helpers";
+@import "mixins";  
+@import "profile"; 
+@import "verticalTabs"; 
+@import "buttons"; 
+@import "panel"; 
+
+
+body {
+	padding-top:0 !important; 
+}
+
+#app {
+	height:100%; 
+}
+
+nav.navbar {
+	margin-bottom:0 !important; 
+}

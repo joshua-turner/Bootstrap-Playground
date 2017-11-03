@@ -1,0 +1,23 @@
+.vertical__tabs-wrapper {
+	margin-top:35px; 	
+}
+
+.vertical__tab {
+	height: 40px;
+    background: $vertical-tab-background;
+    border-bottom: 1px solid $vertical-tab-border-color;
+    padding-right: 10px;
+    @include center-all-content(); 
+
+    &:hover, &:focus {
+    	text-decoration:none; 
+    	outline:none; 
+    	background: #F5F5F5;
+    	border-left: 3px solid $vertical-tab-border-active-color;
+    }
+}
+
+.vertical__tab--active {
+	border-left: 3px solid $vertical-tab-border-active-color;
+    color: black;
+}
