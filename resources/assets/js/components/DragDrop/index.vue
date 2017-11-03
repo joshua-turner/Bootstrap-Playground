@@ -71,6 +71,7 @@
   pre{
     position: fixed;
     right:50px;
+    width: 200px;
   }
 
 </style>
@@ -80,11 +81,11 @@
 	<div class="row">
 
     <Tabs>
-      <Tab name="Template 1">
+      <Tab name="vue-draggable">
         <temp-one-drag></temp-one-drag>
       </Tab>
 
-      <Tab name="Template 2">
+      <Tab name="Dragula">
         <temp-two-drag></temp-two-drag>
       </Tab>
     </Tabs>

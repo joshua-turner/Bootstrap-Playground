@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/fetchDraggableData', 'PlaygroundController@getDraggableData')->name('home');
 
 Route::get('user/records/all', 'ProfileController@getRecords'); 
 
@@ -38,3 +39,6 @@ Route::get('dashboard', 'DashboardController@index');
 Route::get('dashboard/user/stats', 'DashboardController@stats');
 
 Route::get('/dashboard/polling/options', 'DashboardController@getPollingOptions');
+
+
+
