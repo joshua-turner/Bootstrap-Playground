@@ -64993,6 +64993,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -65156,385 +65160,370 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "panel" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table table-striped" }, [
-            _c("thead", [
-              _c("th", [
-                _vm._v(
-                  "\n                            First\n            \n                            "
-                ),
-                _c(
-                  "span",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.filterRecordsByKey("first_name", "users")
-                      }
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-chevron-up",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fa fa-chevron-down",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", [
-                _vm._v(
-                  "\n                            Last Name\n            \n                            "
-                ),
-                _c(
-                  "span",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.filterRecordsByKey("last_name", "users")
-                      }
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-chevron-up",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fa fa-chevron-down",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", [
-                _vm._v(
-                  "\n                            Email\n            \n                            "
-                ),
-                _c(
-                  "span",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.filterRecordsByKey("email", "users")
-                      }
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-chevron-up",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fa fa-chevron-down",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", [
-                _vm._v(
-                  "\n                            Phone #\n                            "
-                ),
-                _c(
-                  "span",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.filterRecordsByKey("phone_number", "profile")
-                      }
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-chevron-up",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fa fa-chevron-down",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", [
-                _vm._v(
-                  "\n                            Address\n                            "
-                ),
-                _c(
-                  "span",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.filterRecordsByKey("address_line_1", "profile")
-                      }
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-chevron-up",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fa fa-chevron-down",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", [
-                _vm._v(
-                  "\n                            Country\n                            "
-                ),
-                _c(
-                  "span",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.filterRecordsByKey("country", "profile")
-                      }
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-chevron-up",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fa fa-chevron-down",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", [
-                _vm._v(
-                  "\n                            Last Updated At\n            \n                            "
-                ),
-                _c(
-                  "span",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.filterRecordsByKey("updated_at", "users")
-                      }
-                    }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-chevron-up",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fa fa-chevron-down",
-                      attrs: { "aria-hidden": "true" }
-                    })
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("th")
-            ]),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.records, function(user) {
-                return _c("tr", [
-                  _c("td", [
-                    _c("p", [
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(user.first_name) +
-                          "\n                                "
+    _c("div", { staticClass: "panel-body" }, [
+      _c(
+        "div",
+        { staticClass: "dataTables_wrapper dt-bootstrap form-inline" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row", staticStyle: { "margin-top": "40px" } },
+            [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass:
+                        "table table-hover dataTable w-full dtr-inline"
+                    },
+                    [
+                      _c("thead", [
+                        _c("th", [
+                          _c("div", { staticClass: "flex" }, [
+                            _vm._v(
+                              "\n                                        First\n\n                                        "
+                            ),
+                            _c(
+                              "span",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    _vm.filterRecordsByKey(
+                                      "first_name",
+                                      "users"
+                                    )
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fa fa-fw fa-sort" })]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("th", [
+                          _vm._v(
+                            "\n                                Last Name\n\n                                "
+                          ),
+                          _c(
+                            "span",
+                            {
+                              on: {
+                                click: function($event) {
+                                  _vm.filterRecordsByKey("last_name", "users")
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-fw fa-sort" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("th", [
+                          _vm._v(
+                            "\n                                Email\n\n                                "
+                          ),
+                          _c(
+                            "span",
+                            {
+                              on: {
+                                click: function($event) {
+                                  _vm.filterRecordsByKey("email", "users")
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-fw fa-sort" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("th", [
+                          _vm._v(
+                            "\n                                Phone #\n                                "
+                          ),
+                          _c(
+                            "span",
+                            {
+                              on: {
+                                click: function($event) {
+                                  _vm.filterRecordsByKey(
+                                    "phone_number",
+                                    "profile"
+                                  )
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-fw fa-sort" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("th", [
+                          _vm._v(
+                            "\n                                Address\n                                "
+                          ),
+                          _c(
+                            "span",
+                            {
+                              on: {
+                                click: function($event) {
+                                  _vm.filterRecordsByKey(
+                                    "address_line_1",
+                                    "profile"
+                                  )
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-fw fa-sort" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("th", [
+                          _vm._v(
+                            "\n                                Country\n                                "
+                          ),
+                          _c(
+                            "span",
+                            {
+                              on: {
+                                click: function($event) {
+                                  _vm.filterRecordsByKey("country", "profile")
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-fw fa-sort" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("th", [
+                          _vm._v(
+                            "\n                                Updated At\n\n                                "
+                          ),
+                          _c(
+                            "span",
+                            {
+                              on: {
+                                click: function($event) {
+                                  _vm.filterRecordsByKey("updated_at", "users")
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-fw fa-sort" })]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("th")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.records, function(user) {
+                          return _c("tr", [
+                            _c("td", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(user.first_name) +
+                                    "\n                                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(user.last_name) +
+                                    "\n                                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(user.email) +
+                                    "\n                                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(user.profile.phone_number) +
+                                    "\n                                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(user.profile.address_line_1) +
+                                    "\n                                        "
+                                ),
+                                _c("br"),
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(user.profile.address_line_2) +
+                                    "\n                                        "
+                                ),
+                                _c("br"),
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(user.profile.city) +
+                                    ", " +
+                                    _vm._s(user.profile.state) +
+                                    "\n                                        "
+                                ),
+                                _c("br"),
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(user.profile.postal_code) +
+                                    "\n                                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(user.profile.country) +
+                                    "\n                                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c("p", [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(
+                                      _vm._f("fulldate")(user.updated_at)
+                                    ) +
+                                    "\n                                    "
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                "\n                                    More\n                                "
+                              )
+                            ])
+                          ])
+                        })
                       )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("p", [
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(user.last_name) +
-                          "\n                                "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("p", [
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(user.email) +
-                          "\n                                "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("p", [
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(user.profile.phone_number) +
-                          "\n                                "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("p", [
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(user.profile.address_line_1) +
-                          "\n                                    "
-                      ),
-                      _c("br"),
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(user.profile.address_line_2) +
-                          "\n                                    "
-                      ),
-                      _c("br"),
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(user.profile.city) +
-                          ", " +
-                          _vm._s(user.profile.state) +
-                          "\n                                    "
-                      ),
-                      _c("br"),
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(user.profile.postal_code) +
-                          "\n                                "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("p", [
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(user.profile.country) +
-                          "\n                                "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("p", [
-                      _vm._v(
-                        "\n                                    " +
-                          _vm._s(_vm._f("fulldate")(user.updated_at)) +
-                          "\n                                "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      "\n                                More\n                            "
+                    ]
+                  )
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "ul",
+            {
+              staticClass: "pagination right-align",
+              attrs: { id: "paginationLog" }
+            },
+            [
+              _vm.logPagination.current_page > 1
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#", "aria-label": "Previous" },
+                        on: {
+                          click: function($event) {
+                            _vm.getRecords(_vm.logPagination.current_page - 1)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-chevron-left",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
                     )
                   ])
-                ])
-              })
-            )
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "pagination right-align", attrs: { id: "paginationLog" } },
-      [
-        _vm.logPagination.current_page > 1
-          ? _c("li", [
-              _c(
-                "a",
-                {
-                  attrs: { href: "#", "aria-label": "Previous" },
-                  on: {
-                    click: function($event) {
-                      _vm.getRecords(_vm.logPagination.current_page - 1)
-                    }
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fa fa-chevron-left",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ]
-              )
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm._l(_vm.pagesNumber, function(page) {
-          return _c("li", { class: [page == _vm.isActived ? "active" : ""] }, [
-            _c(
-              "a",
-              {
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    _vm.getRecords(page)
-                  }
-                }
-              },
-              [_vm._v("\n                " + _vm._s(page) + "\n            ")]
-            )
-          ])
-        }),
-        _vm._v(" "),
-        _vm.logPagination.current_page < _vm.logPagination.last_page
-          ? _c("li", [
-              _c(
-                "a",
-                {
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      _vm.getRecords(_vm.logPagination.current_page + 1)
-                    }
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fa fa-chevron-right",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ]
-              )
-            ])
-          : _vm._e()
-      ],
-      2
-    )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.pagesNumber, function(page) {
+                return _c(
+                  "li",
+                  { class: [page == _vm.isActived ? "active" : ""] },
+                  [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            _vm.getRecords(page)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(page) +
+                            "\n                "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _vm.logPagination.current_page < _vm.logPagination.last_page
+                ? _c("li", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            _vm.getRecords(_vm.logPagination.current_page + 1)
+                          }
+                        }
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-chevron-right",
+                          attrs: { "aria-hidden": "true" }
+                        })
+                      ]
+                    )
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "panel-heading" }, [
+      _c("div", { staticClass: "panel-actions" }),
+      _vm._v(" "),
+      _c("h3", { staticClass: "panel-title" }, [_vm._v("Users")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

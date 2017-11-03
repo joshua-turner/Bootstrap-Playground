@@ -10,11 +10,34 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
+
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
+    <link rel="stylesheet" href="/global/css/bootstrap-extend.min.css">
+    <link rel="stylesheet" href="/assets/css/site.min.css">
+    <!-- Plugins -->
+    <link rel="stylesheet" href="/global/vendor/animsition/animsition.css">
+    <link rel="stylesheet" href="/global/vendor/asscrollable/asScrollable.css">
+    <link rel="stylesheet" href="/global/vendor/switchery/switchery.css">
+    <link rel="stylesheet" href="/global/vendor/intro-js/introjs.css">
+    <link rel="stylesheet" href="/global/vendor/slidepanel/slidePanel.css">
+    <link rel="stylesheet" href="/global/vendor/flag-icon-css/flag-icon.css">
+    <link rel="stylesheet" href="/global/vendor/waves/waves.css">
+    <link rel="stylesheet" href="/global/vendor/datatables-bootstrap/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="/global/vendor/datatables-fixedheader/dataTables.fixedHeader.css">
+    <link rel="stylesheet" href="/global/vendor/datatables-responsive/dataTables.responsive.css">
+    <link rel="stylesheet" href="/assets/examples/css/tables/datatable.css">
+
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="/global/css/bootstrap-extend.min.css">
+    <link rel="stylesheet" href="/assets/css/site.min.css">
+
+
 </head>
 <body>
     <div id="app">
@@ -46,38 +69,38 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Logout
                                 </a>
 
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </li>
-                        @endguest
-                    </ul>
-                </div>
+                        </ul>
+                    </li>
+                    @endguest
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        @yield('content')
-    </div>
+    @yield('content')
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

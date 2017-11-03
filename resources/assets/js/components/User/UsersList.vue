@@ -1,88 +1,90 @@
 <template>
-    <div>
+    <div class="panel">
 
-        <div class="row">
-            <div class="col-md-5">
-                <input type="text" placeholder="Search" class="form-control">
-            </div>
-        </div>
+        <header class="panel-heading">
+            <div class="panel-actions"></div>
+            <h3 class="panel-title">Users</h3>
+        </header>
 
-        <hr>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <th>
-                                First
-                
-                                <span @click="filterRecordsByKey('first_name','users')">
-                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                                </span>
-                
-                            </th>
-                
-                            <th>
+        <div class="panel-body">
+            <div class="dataTables_wrapper dt-bootstrap form-inline">
+                <div class="row">
+                    <div class="col-md-5">
+                        <input type="text" placeholder="Search" class="form-control">
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin-top:40px;">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-hover dataTable w-full dtr-inline">
+                                <thead>
+                                    <th>
+                                       <div class="flex">
+                                        First
+
+                                        <span @click="filterRecordsByKey('first_name','users')">
+                                            <i class="fa fa-fw fa-sort"></i>
+                                       </span>
+                                   </div>
+
+                               </th>
+
+                               <th>
                                 Last Name
-                
+
                                 <span @click="filterRecordsByKey('last_name','users')">
-                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    <i class="fa fa-fw fa-sort"></i>
                                 </span>
-                                
+
                             </th>
-                
+
                             <th>
                                 Email
-                
+
                                 <span @click="filterRecordsByKey('email','users')">
-                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    <i class="fa fa-fw fa-sort"></i>
                                 </span>
                             </th>
-                
+
                             <th>
                                 Phone #
                                 <span @click="filterRecordsByKey('phone_number','profile')">
-                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    <i class="fa fa-fw fa-sort"></i>
                                 </span>
-                
+
                             </th>
-                
+
                             <th>
                                 Address
                                 <span @click="filterRecordsByKey('address_line_1','profile')">
-                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    <i class="fa fa-fw fa-sort"></i>
                                 </span>
-                
-                                
+
+
                             </th>
-                
+
                             <th>
                                 Country
                                 <span @click="filterRecordsByKey('country','profile')">
-                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    <i class="fa fa-fw fa-sort"></i>
                                 </span>
-                
-                                
+
+
                             </th>
-                
+
                             <th>
-                                Last Updated At
-                
+                                Updated At
+
                                 <span @click="filterRecordsByKey('updated_at','users')">
-                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    <i class="fa fa-fw fa-sort"></i>
                                 </span>
-                
-                                
+
+
                             </th>
-                
+
                             <th></th>
                         </thead>
                         <tbody>
@@ -92,25 +94,25 @@
                                         {{ user.first_name }}
                                     </p>
                                 </td>
-                
+
                                 <td>
                                     <p>
                                         {{ user.last_name }}
                                     </p>
                                 </td>
-                
+
                                 <td>
                                     <p>
                                         {{ user.email }}
                                     </p>
                                 </td>
-                
+
                                 <td>
                                     <p>
                                         {{ user.profile.phone_number }}
                                     </p>
                                 </td>
-                
+
                                 <td>
                                     <p>
                                         {{ user.profile.address_line_1 }}
@@ -121,23 +123,23 @@
                                         <br>
                                         {{ user.profile.postal_code }}
                                     </p>
-                
-                                    
-                
+
+
+
                                 </td>
-                
+
                                 <td>
                                     <p>
                                         {{ user.profile.country }}
                                     </p>
                                 </td>
-                
+
                                 <td>
                                     <p>
                                         {{ user.updated_at | fulldate }}
                                     </p>
                                 </td>
-                
+
                                 <td>
                                     More
                                 </td>
@@ -167,8 +169,10 @@
                 </a>
             </li>
         </ul>
-
     </div>
+</div>
+
+</div>
 </template>
 
 <script>
@@ -348,13 +352,13 @@ export default {
 
                 console.log("building the endpoint to get the records"); 
                 let args = [
-                    'page=' + (!page ? this.logPagination.current_page : page), 
-                    'q=' + this.q, 
-                    'status=' + this.statusFilter, 
-                    'date=' + this.dateFilter, 
-                    'orderBy=' + this.orderRecords.column, 
-                    'orderFrom=' + this.orderRecords.table, 
-                    'orderType=' + this.orderRecords.orderType, 
+                'page=' + (!page ? this.logPagination.current_page : page), 
+                'q=' + this.q, 
+                'status=' + this.statusFilter, 
+                'date=' + this.dateFilter, 
+                'orderBy=' + this.orderRecords.column, 
+                'orderFrom=' + this.orderRecords.table, 
+                'orderType=' + this.orderRecords.orderType, 
                 ];  
 
                 console.log(args.join('&')); 

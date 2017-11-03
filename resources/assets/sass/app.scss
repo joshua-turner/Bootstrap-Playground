@@ -16,3 +16,8 @@
 @import "verticalTabs"; 
 @import "buttons"; 
 @import "panel"; 
+
+
+body {
+	padding-top:0 !important; 
+}

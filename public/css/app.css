@@ -8457,7 +8457,7 @@ button.close {
   border-color: #0D5496 !important;
 }
 
-.panel {
+.playground__panel-wrapper {
   position: relative;
   margin-bottom: 1.875rem;
   background-color: #fff;
@@ -8465,5 +8465,9 @@ button.close {
   border-radius: .286rem;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  padding-top: 0 !important;
 }
 
