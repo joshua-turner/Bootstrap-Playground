@@ -1,4 +1,5 @@
 .playground__primary-btn {
-    background: $btn-primary-color;
+    background: $btn-primary-color !important;
     border-color: $btn-primary-color !important;
+    color:#fff !important; 
 }

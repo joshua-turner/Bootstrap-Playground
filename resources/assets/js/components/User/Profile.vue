@@ -38,7 +38,7 @@
 
             <div class="col-md-9 col-sm-8">
                 <keep-alive v-for="(tab, key) in tabs" v-if="tab.component" :key="key">
-                    <component :is="tab.component" v-show="tab.isActive"></component>
+                    <component :is="tab.component" v-show="tab.isActive" :user-profile="userProfile"></component>
                 </keep-alive> 
             </div>
 
@@ -52,9 +52,12 @@
 </template>
 
 <script>
+
+import profileData from './UserProfileData.js'; 
+
 export default {
 
-    props:[], 
+    props:['user'], 
 
 
     data()
@@ -126,6 +129,9 @@ export default {
             }, 
 
 
+            userProfile:profileData, 
+
+
         }; 
     }, 
 
@@ -135,6 +141,25 @@ export default {
         init()
         {
 
+            for(var key in this.userProfile)
+            {
+                if(key in this.user)
+                    this.userProfile[key] = this.user[key];
+            }
+
+        }, 
+
+
+
+        mapFields(fields, closure)
+        {
+            console.log("mapping the fields");
+
+            for(var key in fields)
+            {
+                var dbField = fields[key]; 
+                closure(dbField, key); 
+            } 
         }, 
 
 

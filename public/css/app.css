@@ -8453,8 +8453,9 @@ button.close {
 }
 
 .playground__primary-btn {
-  background: #0D5496;
+  background: #0D5496 !important;
   border-color: #0D5496 !important;
+  color: #fff !important;
 }
 
 .playground__panel-wrapper {

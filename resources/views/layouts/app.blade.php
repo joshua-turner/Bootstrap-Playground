@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="/global/fonts/brand-icons/brand-icons.min.css">
   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
 
-    <link rel="stylesheet" href="/global/css/bootstrap-extend.min.css">
+    <!-- <link rel="stylesheet" href="/global/css/bootstrap-extend.min.css"> -->
     <link rel="stylesheet" href="/assets/css/site.min.css">
 
     @yield('after-styles')

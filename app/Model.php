@@ -12,6 +12,14 @@ class Model extends Eloquent
 
 
 
+	public static function scopeId($query, $id)
+	{
+		return $query->where('id', $id); 
+	}
+
+
+
+
 	public function user()
 	{
 		return $this->belongsTo(User::class, 'user_id');
