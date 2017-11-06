@@ -27,7 +27,7 @@ Vue.component('temp-two-form', require('./components/Form/TempTwo.vue'));
 
 
 
-Vue.component('user-profile-tabs', require('./components/User/Profile.vue'));
+Vue.component('user-profile', require('./components/User/Profile.vue'));
 Vue.component('user-profile-details', require('./components/User/UserProfileDetails.vue'));
 Vue.component('user-email-details', require('./components/User/UserEmailDetails.vue'));
 Vue.component('user-address-details', require('./components/User/UserAddressDetails.vue'));

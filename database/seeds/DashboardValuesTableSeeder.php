@@ -12,5 +12,6 @@ class DashboardValuesTableSeeder extends Seeder
     public function run()
     {
         //
+        factory(App\DashboardValues::class, 50)->create(); 
     }
 }

@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="container">
-	<user-profile-tabs></user-profile-tabs>
+	<user-profile :user="{{ $profile }}"></user-profile>
 </div>
 
 @stop

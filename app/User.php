@@ -71,6 +71,12 @@ class User extends Authenticatable
 
 
 
+    public static function scopeId($query, $id)
+    {
+        return $query->where('id', $id); 
+    }
+
+
 
 
     public function profile()

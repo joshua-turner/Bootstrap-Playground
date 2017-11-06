@@ -27,9 +27,11 @@ class ProfileController extends Controller
 
 	public function show($profile = null)
 	{
-		// $profile = $profile ?: auth()->user()
+		$profile = $profile ?: $this->getRandomuser(); 
 
-		return view('user.profile'); 
+		// dd($profile); 
+
+		return view('user.profile', compact('profile')); 
 
 	}
 
@@ -52,6 +54,17 @@ class ProfileController extends Controller
 		return User::records()->paginate(10); 
 	}
 
+
+
+
+
+	public function getRandomuser()
+	{
+		return User::id(
+			rand(1, User::count())
+		)->with('profile')
+		->first(); 
+	}
 
 
 }
